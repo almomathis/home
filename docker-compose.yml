@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  homepage:
+    build:
+      context: https://github.com/almomathis/home
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - ENV=production
+    volumes:
+      - ./data:/app/data
+    networks:
+      - homepage-network
+    restart: unless-stopped
+
+networks:
+  homepage-network:
+    driver: bridge
