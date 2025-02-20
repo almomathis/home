@@ -17,8 +17,8 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: Build Docker Image
+    - name: Build and Push Docker Image
       run: |
-        docker build -t homepage .
-        docker tag homepage ghcr.io/almomathis/homepage:latest
-        docker push ghcr.io/almomathis/homepage:latest
+        docker build -t ghcr.io/almomathis/home:${{ github.sha }} -t ghcr.io/almomathis/home:latest .
+        docker push ghcr.io/almomathis/home:${{ github.sha }}
+        docker push ghcr.io/almomathis/home:latest
