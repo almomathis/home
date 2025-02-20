@@ -15,8 +15,8 @@ jobs:
       - name: SSH to Server & Deploy
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: your-server-ip
-          username: your-username
+          host: http://45.92.216.222
+          username: mathiiiiiis
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ~/home
