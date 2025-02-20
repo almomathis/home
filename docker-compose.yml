@@ -1,0 +1,12 @@
+services:
+  homepage:
+    image: ghcr.io/almomathis/home:latest
+    container_name: homepage-container
+    pull_policy: always
+    ports:
+      - "2000:80"
+    deploy:
+      update_config:
+        order: start-first
+      restart_policy:
+        condition: any
