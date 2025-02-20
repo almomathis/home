@@ -3,6 +3,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     
     steps:
     - uses: actions/checkout@v3
@@ -14,7 +17,8 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: Build and Push Docker Image
+    - name: Build Docker Image
       run: |
-        docker build -t ghcr.io/${{ github.repository }}/homepage:latest .
-        docker push ghcr.io/${{ github.repository }}/homepage:latest
+        docker build -t homepage .
+        docker tag homepage ghcr.io/almomathis/homepage:latest
+        docker push ghcr.io/almomathis/homepage:latest
