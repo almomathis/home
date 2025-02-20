@@ -15,10 +15,9 @@ jobs:
       - name: SSH to Server & Deploy
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.SSH_SERVER_IP }}
+          host: ${{ secrets.SSH_SERVER_IP }}:22
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
           script: |
             cd ~/home
             git pull origin main
