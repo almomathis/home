@@ -18,6 +18,7 @@ jobs:
           host: http://45.92.216.222
           username: mathiiiiiis
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
           script: |
             cd ~/home
             git pull origin main
