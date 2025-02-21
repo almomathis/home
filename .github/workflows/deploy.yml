@@ -19,5 +19,5 @@ jobs:
           port: "22"
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            ssh root@${{ secrets.SSH_SERVER_IP }} -p 22 'cd ~/home && git pull origin main && docker-compose pull && docker-compose up -d --force-recreate'
+          run: |
+            ssh -i ~/.ssh/github_deploy_key -p 22 root@45.92.216.222 "cd ~/home && git pull origin main && docker-compose pull && docker-compose up -d --force-recreate"
