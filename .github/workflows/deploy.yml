@@ -20,7 +20,4 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd ~/home
-            git pull origin main
-            docker-compose pull
-            docker-compose up -d --force-recreate
+            ssh root@${{ secrets.SSH_SERVER_IP }} -p 22 'cd ~/home && git pull origin main && docker-compose pull && docker-compose up -d --force-recreate'
