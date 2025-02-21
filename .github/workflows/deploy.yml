@@ -1,26 +1,21 @@
-name: Deploy
+name: Deployment
 
 on:
   push:
     branches:
+      - master
       - main
-
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: SSH to Server & Deploy
-        uses: appleboy/ssh-action@v0.1.10
+      - name: Pull Newest Change
+        uses: appleboy/ssh-action@master
         with:
           host: 45.92.216.222
-          port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ~/home
-            git pull origin main
-            docker-compose pull
-            docker-compose up -d --force-recreate
+            cd home
+            git pull origin master
