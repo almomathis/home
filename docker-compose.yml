@@ -1,8 +1,7 @@
 services:
   homepage:
-    image: ghcr.io/almomathis/home:latest
+    build: .
     container_name: homepage-container
-    pull_policy: always
     ports:
       - "2000:80"
     deploy:
