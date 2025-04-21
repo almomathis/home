@@ -4,7 +4,4 @@ services:
     container_name: home
     ports:
       - "${PORT}:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - .:/usr/share/nginx/html:ro
     restart: unless-stopped
