@@ -1,17 +1,16 @@
-version: '3.8'
-
 services:
-  homepage:
-    image: php:8.2-apache
-    container_name: home
+  website:
+    image: nginx:stable-alpine
+    container_name: website
     restart: unless-stopped
     volumes:
-      - ./homepage:/var/www/html
+      - ./website:/usr/share/nginx/html
+      - ./nginx/conf.d:/etc/nginx/conf.d
     ports:
-      - "8080:80" 
+      - "8082:80"
     networks:
-      - homepage-network
+      - website-network
 
 networks:
-  homepage-network:
-    name: homepage-network
+  website-network:
+    driver: bridge
