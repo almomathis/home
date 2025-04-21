@@ -1,7 +1,21 @@
+version: '3.8'
+
 services:
   web:
-    image: nginx:latest
-    container_name: home
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: home-app
+    restart: always
     ports:
-      - "${PORT}:80"
-    restart: unless-stopped
+      - "69:69"
+    environment:
+      - NODE_ENV=production
+      - PORT=8443
+      - HOST=0.0.0.0
+    networks:
+      - home-network
+
+networks:
+  home-network:
+    driver: bridge
