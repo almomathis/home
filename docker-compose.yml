@@ -1,21 +1,17 @@
 version: '3.8'
 
 services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: home-app
-    restart: always
+  homepage:
+    image: php:8.2-apache
+    container_name: home
+    restart: unless-stopped
+    volumes:
+      - ./homepage:/var/www/html
     ports:
-      - "69:69"
-    environment:
-      - NODE_ENV=production
-      - PORT=69
-      - HOST=0.0.0.0
+      - "8080:80" 
     networks:
-      - home-network
+      - homepage-network
 
 networks:
-  home-network:
-    driver: bridge
+  homepage-network:
+    name: homepage-network
