@@ -1,16 +1,7 @@
 services:
-  website:
-    image: nginx:stable-alpine
+  web:
+    build: .
     container_name: website
-    restart: unless-stopped
-    volumes:
-      - ./website:/usr/share/nginx/html
-      - ./nginx/conf.d:/etc/nginx/conf.d
     ports:
-      - "8082:80"
-    networks:
-      - website-network
-
-networks:
-  website-network:
-    driver: bridge
+      - "${PORT}:8801"
+    restart: unless-stopped
