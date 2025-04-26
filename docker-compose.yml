@@ -3,5 +3,5 @@ services:
     build: .
     container_name: website
     ports:
-      - "${PORT}:8801"
+      - "${PORT}:80"
     restart: unless-stopped
